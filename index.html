@@ -1,0 +1,268 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="initial-scale=1,user-scalable=no,maximum-scale=1,width=device-width">
+        <meta name="mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <link rel="stylesheet" href="css/leaflet.css">
+        <link rel="stylesheet" href="css/qgis2web.css"><link rel="stylesheet" href="css/fontawesome-all.min.css">
+        <link rel="stylesheet" href="css/leaflet-search.css">
+        <link rel="stylesheet" href="css/leaflet-measure.css">
+        <style>
+        html, body, #map {
+            width: 100%;
+            height: 100%;
+            padding: 0;
+            margin: 0;
+        }
+        h2 { color:blue
+           }
+        h1 {
+            text-align: center;
+           }
+        </style>
+        <title>Mapa Limpeza Guarabu</title>
+    </head>
+    <body>
+        <h1>Mapa de Limpeza Guarabu</h1>
+        <h2> Imagem : Agosto de 2022</h2>
+        <h3> Resolução: 5m </h3>
+        <h3> Sensor:Planet </h4>
+        <div id="map">
+        </div>
+        <script src="js/qgis2web_expressions.js"></script>
+        <script src="js/leaflet.js"></script>
+        <script src="js/leaflet.rotatedMarker.js"></script>
+        <script src="js/leaflet.pattern.js"></script>
+        <script src="js/leaflet-hash.js"></script>
+        <script src="js/Autolinker.min.js"></script>
+        <script src="js/rbush.min.js"></script>
+        <script src="js/labelgun.min.js"></script>
+        <script src="js/labels.js"></script>
+        <script src="js/leaflet-measure.js"></script>
+        <script src="js/leaflet-search.js"></script>
+        <script src="data/AREA_LIMPEZA_AJIUSTADO_CAR_4.js"></script>
+        <script src="data/GUARABU_5.js"></script>
+        <script>
+        var map = L.map('map', {
+            zoomControl:true, maxZoom:28, minZoom:1
+        }).fitBounds([[-7.490515844072615,-48.98363485446261],[-7.15538071379633,-48.518878321093496]]);
+        var hash = new L.Hash(map);
+        map.attributionControl.setPrefix('<a href="https://github.com/tomchadwin/qgis2web" target="_blank">qgis2web</a> &middot; <a href="https://leafletjs.com" title="A JS library for interactive maps">Leaflet</a> &middot; <a href="https://qgis.org">QGIS</a>');
+        var autolinker = new Autolinker({truncate: {length: 30, location: 'smart'}});
+        var measureControl = new L.Control.Measure({
+            position: 'topleft',
+            primaryLengthUnit: 'feet',
+            secondaryLengthUnit: 'miles',
+            primaryAreaUnit: 'sqfeet',
+            secondaryAreaUnit: 'sqmiles'
+        });
+        measureControl.addTo(map);
+        document.getElementsByClassName('leaflet-control-measure-toggle')[0]
+        .innerHTML = '';
+        document.getElementsByClassName('leaflet-control-measure-toggle')[0]
+        .className += ' fas fa-ruler';
+        var bounds_group = new L.featureGroup([]);
+        function setBounds() {
+        }
+        map.createPane('pane_GoogleSatellite_0');
+        map.getPane('pane_GoogleSatellite_0').style.zIndex = 400;
+        var layer_GoogleSatellite_0 = L.tileLayer('https://mt1.google.com/vt/lyrs=s&x={x}&y={y}&z={z}', {
+            pane: 'pane_GoogleSatellite_0',
+            opacity: 1.0,
+            attribution: '',
+            minZoom: 1,
+            maxZoom: 28,
+            minNativeZoom: 0,
+            maxNativeZoom: 19
+        });
+        layer_GoogleSatellite_0;
+        map.addLayer(layer_GoogleSatellite_0);
+        map.createPane('pane_Agosto_2022_3_1');
+        map.getPane('pane_Agosto_2022_3_1').style.zIndex = 401;
+        var img_Agosto_2022_3_1 = 'data/Agosto_2022_3_1.png';
+        var img_bounds_Agosto_2022_3_1 = [[-7.362466864463061,-49.042968743132256],[-7.18810087013013,-48.86718749315666]];
+        var layer_Agosto_2022_3_1 = new L.imageOverlay(img_Agosto_2022_3_1,
+                                              img_bounds_Agosto_2022_3_1,
+                                              {pane: 'pane_Agosto_2022_3_1'});
+        bounds_group.addLayer(layer_Agosto_2022_3_1);
+        map.addLayer(layer_Agosto_2022_3_1);
+        map.createPane('pane_Agosto_2022_2_2');
+        map.getPane('pane_Agosto_2022_2_2').style.zIndex = 402;
+        var img_Agosto_2022_2_2 = 'data/Agosto_2022_2_2.png';
+        var img_bounds_Agosto_2022_2_2 = [[-7.536764320987598,-48.86718749315667],[-7.362466864463027,-48.69140624318108]];
+        var layer_Agosto_2022_2_2 = new L.imageOverlay(img_Agosto_2022_2_2,
+                                              img_bounds_Agosto_2022_2_2,
+                                              {pane: 'pane_Agosto_2022_2_2'});
+        bounds_group.addLayer(layer_Agosto_2022_2_2);
+        map.addLayer(layer_Agosto_2022_2_2);
+        map.createPane('pane_Agosto_2022_1_3');
+        map.getPane('pane_Agosto_2022_1_3').style.zIndex = 403;
+        var img_Agosto_2022_1_3 = 'data/Agosto_2022_1_3.png';
+        var img_bounds_Agosto_2022_1_3 = [[-7.362466864463061,-48.86718749315667],[-7.18810087013013,-48.69140624318108]];
+        var layer_Agosto_2022_1_3 = new L.imageOverlay(img_Agosto_2022_1_3,
+                                              img_bounds_Agosto_2022_1_3,
+                                              {pane: 'pane_Agosto_2022_1_3'});
+        bounds_group.addLayer(layer_Agosto_2022_1_3);
+        map.addLayer(layer_Agosto_2022_1_3);
+        function pop_AREA_LIMPEZA_AJIUSTADO_CAR_4(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['AREA_HA'] !== null ? autolinker.link(feature.properties['AREA_HA'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_AREA_LIMPEZA_AJIUSTADO_CAR_4_0() {
+            return {
+                pane: 'pane_AREA_LIMPEZA_AJIUSTADO_CAR_4',
+                opacity: 1,
+                color: 'rgba(0,12,255,1.0)',
+                dashArray: '',
+                lineCap: 'square',
+                lineJoin: 'bevel',
+                weight: 5.0,
+                fillOpacity: 0,
+                interactive: true,
+            }
+        }
+        map.createPane('pane_AREA_LIMPEZA_AJIUSTADO_CAR_4');
+        map.getPane('pane_AREA_LIMPEZA_AJIUSTADO_CAR_4').style.zIndex = 404;
+        map.getPane('pane_AREA_LIMPEZA_AJIUSTADO_CAR_4').style['mix-blend-mode'] = 'normal';
+        var layer_AREA_LIMPEZA_AJIUSTADO_CAR_4 = new L.geoJson(json_AREA_LIMPEZA_AJIUSTADO_CAR_4, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_AREA_LIMPEZA_AJIUSTADO_CAR_4',
+            layerName: 'layer_AREA_LIMPEZA_AJIUSTADO_CAR_4',
+            pane: 'pane_AREA_LIMPEZA_AJIUSTADO_CAR_4',
+            onEachFeature: pop_AREA_LIMPEZA_AJIUSTADO_CAR_4,
+            style: style_AREA_LIMPEZA_AJIUSTADO_CAR_4_0,
+        });
+        bounds_group.addLayer(layer_AREA_LIMPEZA_AJIUSTADO_CAR_4);
+        map.addLayer(layer_AREA_LIMPEZA_AJIUSTADO_CAR_4);
+        function pop_GUARABU_5(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Name'] !== null ? autolinker.link(feature.properties['Name'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['description'] !== null ? autolinker.link(feature.properties['description'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['timestamp'] !== null ? autolinker.link(feature.properties['timestamp'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['begin'] !== null ? autolinker.link(feature.properties['begin'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['end'] !== null ? autolinker.link(feature.properties['end'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['altitudeMode'] !== null ? autolinker.link(feature.properties['altitudeMode'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['tessellate'] !== null ? autolinker.link(feature.properties['tessellate'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['extrude'] !== null ? autolinker.link(feature.properties['extrude'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['visibility'] !== null ? autolinker.link(feature.properties['visibility'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['drawOrder'] !== null ? autolinker.link(feature.properties['drawOrder'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['icon'] !== null ? autolinker.link(feature.properties['icon'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['parcela_co'] !== null ? autolinker.link(feature.properties['parcela_co'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['rt'] !== null ? autolinker.link(feature.properties['rt'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['art'] !== null ? autolinker.link(feature.properties['art'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['situacao_i'] !== null ? autolinker.link(feature.properties['situacao_i'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['codigo_imo'] !== null ? autolinker.link(feature.properties['codigo_imo'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['data_submi'] !== null ? autolinker.link(feature.properties['data_submi'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['data_aprov'] !== null ? autolinker.link(feature.properties['data_aprov'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['status'] !== null ? autolinker.link(feature.properties['status'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['nome_area'] !== null ? autolinker.link(feature.properties['nome_area'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['registro_m'] !== null ? autolinker.link(feature.properties['registro_m'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['registro_d'] !== null ? autolinker.link(feature.properties['registro_d'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['municipio_'] !== null ? autolinker.link(feature.properties['municipio_'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['uf_id'] !== null ? autolinker.link(feature.properties['uf_id'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_GUARABU_5_0() {
+            return {
+                pane: 'pane_GUARABU_5',
+                opacity: 1,
+                color: 'rgba(227,26,28,1.0)',
+                dashArray: '',
+                lineCap: 'square',
+                lineJoin: 'bevel',
+                weight: 5.0,
+                fillOpacity: 0,
+                interactive: true,
+            }
+        }
+        map.createPane('pane_GUARABU_5');
+        map.getPane('pane_GUARABU_5').style.zIndex = 405;
+        map.getPane('pane_GUARABU_5').style['mix-blend-mode'] = 'normal';
+        var layer_GUARABU_5 = new L.geoJson(json_GUARABU_5, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_GUARABU_5',
+            layerName: 'layer_GUARABU_5',
+            pane: 'pane_GUARABU_5',
+            onEachFeature: pop_GUARABU_5,
+            style: style_GUARABU_5_0,
+        });
+        bounds_group.addLayer(layer_GUARABU_5);
+        map.addLayer(layer_GUARABU_5);
+        var baseMaps = {};
+        L.control.layers(baseMaps,{'<img src="legend/GUARABU_5.png" /> GUARABU': layer_GUARABU_5,'<img src="legend/AREA_LIMPEZA_AJIUSTADO_CAR_4.png" /> AREA_LIMPEZA_AJIUSTADO_CAR': layer_AREA_LIMPEZA_AJIUSTADO_CAR_4,"Agosto_2022_1": layer_Agosto_2022_1_3,"Agosto_2022_2": layer_Agosto_2022_2_2,"Agosto_2022_3": layer_Agosto_2022_3_1,"Google Satellite": layer_GoogleSatellite_0,}).addTo(map);
+        setBounds();
+        map.addControl(new L.Control.Search({
+            layer: layer_AREA_LIMPEZA_AJIUSTADO_CAR_4,
+            initial: false,
+            hideMarkerOnCollapse: true,
+            propertyName: 'AREA_HA'}));
+        document.getElementsByClassName('search-button')[0].className +=
+         ' fa fa-binoculars';
+        L.ImageOverlay.include({
+            getBounds: function () {
+                return this._bounds;
+            }
+        });
+        </script>
+    </body>
+</html>
